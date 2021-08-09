@@ -12,6 +12,23 @@ function Node(val) {
 
 function removeDups(head) {
   // solution
+  // keep a list of values already used
+  // when a value alaready used is reached then delete that node
+  let curNode = head;
+  let previous;
+  let dupList = {};
+  while(curNode) {
+    if(dupList[curNode.val] === undefined) {
+      dupList[curNode.val] = 1
+      previous = curNode;
+      curNode = curNode.next;
+    } else {
+      previous.next = curNode.next;
+      curNode.next = null;
+      curNode = previous.next;
+    }
+  }
+  return head;
 }
 
 module.exports = removeDups;
